@@ -23,12 +23,12 @@ class VerifyVersionCommand(install):
 
 
 setup(
-    name="pypi-project",
+    name="django-admin-commands",
     version=VERSION,
     packages=find_packages(exclude=["tests"]),
-    url="https://github.com/pennlabs/github-project",
+    url="https://github.com/pennlabs/django-admin-commands",
     project_urls={
-        "Changelog": ("https://github.com/pennlabs/github-project/blob/master/CHANGELOG.md")
+        "Changelog": ("https://github.com/pennlabs/django-admin-commands/blob/master/CHANGELOG.md")
     },
     license="MIT",
     author="Penn Labs",

@@ -9,7 +9,7 @@ INSTALLED_APPS = (
     "django.contrib.sites",
     "django.contrib.admin",
     "django.contrib.messages",
-    "project-name.apps.ProjectConfig",
+    "django-admin-commands.apps.ProjectConfig",
     "tests",
 )
 
