@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %}Command interface{% endblock %}
+
+{% block main %}
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <h1>Command interface</h1>
+    <p>{% trans "Clicking on &quot;Run command&quot; will execute the desired command in the background." %}</p>
+    {% if form.errors %}
+        {% for error in form.non_field_errors %}
+            <ul>
+                <li>{{ error }}</li>
+            </ul>
+        {% endfor %}
+    {% endif %}
+    {% for app in form.apps %}
+        <h2>{{ app.app_name }}</h2>
+        {% for command in app.commands %}
+            <h3>{{ command.command }}</h3>
+            <h4>{% trans "Docstring" %}</h4>
+            <p>{{ command.docstring|linebreaks }}</p>
+            <h4>{% trans "Options" %}</h4>
+            <ul>
+                {% for option in command.options %}
+                    <li>{{ option.opt_string }}<br /><em>{{ option.help }}</em></li>
+                {% endfor %}
+            </ul>
+            {% if command.log %}
+                <h4>Log of last run:</h4>
+                <p>{{ command.log|linebreaks }}</p>
+            {% endif %}
+            <form action="." method="post">
+                {% csrf_token %}
+                <input type="hidden" id="id_command" name="command" value="{{ command.command }}" />
+                <label class="control-label" for="{{ form.arguments.id_for_label }}">
+                    <span {% if field.field.required %}class="requiredLabel"{% endif %}>./manage.py {{ command.command }}</span>
+                    <input type="text" id="id_arguments" name="arguments" value="" placeholder="{% trans "arguments [optional]" %}" />
+                </label>
+                <input type="submit" value="{% trans "Run command" %}" />
+            </form>
+            <p>{{ command.help_text }}</p>
+        {% endfor %}
+    {% endfor %}
+{% endblock %}
