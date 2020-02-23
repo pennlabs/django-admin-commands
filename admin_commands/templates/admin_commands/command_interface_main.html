@@ -1,8 +1,11 @@
-{% extends "base.html" %}
 {% load i18n %}
-{% block title %}Command interface{% endblock %}
-
-{% block main %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Commands Interface</title>
+    <meta charset="utf-8" />
+</head>
+<body>
     {% if messages %}
     <ul class="messages">
         {% for message in messages %}
@@ -44,7 +47,8 @@
                 </label>
                 <input type="submit" value="{% trans "Run command" %}" />
             </form>
-            <p>{{ command.help_text }}</p>
+            <p>{{ command.help_text|linebreaksbr }}</p>
         {% endfor %}
     {% endfor %}
-{% endblock %}
+</body>
+</html>
