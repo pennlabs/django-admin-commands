@@ -11,19 +11,19 @@ from .exceptions import CommandError
 from .forms import CommandExecutionForm
 
 
-class CommandInterfaceMainView(FormView):
+class AdminCommandsInterfaceView(FormView):
     """
     A view, that should allow a superuser to call management commands from
     one single view within one click (or some parameters and a click).
     """
     form_class = CommandExecutionForm
-    template_name = 'admin/command_interface_main.html'
+    template_name = 'admin_commands/command_interface_main.html'
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_superuser:
             return redirect_to_login(next=request.path)
-        return super(CommandInterfaceMainView, self).dispatch(
+        return super(AdminCommandsInterfaceView, self).dispatch(
             request, *args, **kwargs)
 
     def form_valid(self, form):
@@ -35,7 +35,7 @@ class CommandInterfaceMainView(FormView):
         info(self.request, _('The command is running. Refresh the page from'
                              ' time to time to see the output once the command'
                              ' is finished.'))
-        return super(CommandInterfaceMainView, self).form_valid(form)
+        return super(AdminCommandsInterfaceView, self).form_valid(form)
 
     def get_success_url(self):
         return reverse('command_interface_main')

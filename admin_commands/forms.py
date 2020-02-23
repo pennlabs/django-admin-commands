@@ -70,9 +70,9 @@ class CommandExecutionForm(forms.Form):
                     docstring = command_class.__doc__ + '\n\n' + docstring
 
                 log = None
-                if settings.LOGFILE_PATH is not None:
+                if app_settings.LOGFILE_PATH is not None:
                     file_name = os.path.join(
-                        settings.LOGFILE_PATH,
+                        app_settings.LOGFILE_PATH,
                         'command_interface_log-{0}.log'.format(command_name))
                     try:
                         with open(file_name, 'r') as f:
@@ -89,7 +89,7 @@ class CommandExecutionForm(forms.Form):
                 python = '/usr/bin/python'
                 if venv is not None:
                     python = os.path.join(venv, 'bin/python')
-                help_text = subprocess.check_output(python, manage_py, command_name, '--help')
+                help_text = subprocess.check_output([python, manage_py, command_name, '--help'])
 
                 command = Command(command_name, docstring, options, log, help_text)
                 App = namedtuple(app_name.replace('.', '_'),
@@ -111,11 +111,11 @@ class CommandExecutionForm(forms.Form):
 
     def command_allowed(self, command_name, app_name):
         """Returns whether or not the command or app should be listed."""
-        if not settings.DISPLAYED_APPS and \
-                not settings.DISPLAYED_COMMANDS:  # pragma: nocover
+        if not app_settings.DISPLAYED_APPS and \
+                not app_settings.DISPLAYED_COMMANDS:  # pragma: nocover
             return True
-        if command_name in settings.DISPLAYED_COMMANDS or \
-                app_name in settings.DISPLAYED_APPS:
+        if command_name in app_settings.DISPLAYED_COMMANDS or \
+                app_name in app_settings.DISPLAYED_APPS:
             return True
         return False
 
