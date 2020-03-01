@@ -31,23 +31,23 @@ class CommandExecutionForm(forms.Form):
         apps = {}
         for command_name, app_name in self.command_dict.items():
             if self.command_allowed(command_name, app_name):
-                pprint('loading ' + command_name)
+                # pprint('loading ' + command_name)
                 self.allowed_commands.append(command_name)
                 command_class = load_command_class(app_name, command_name)
-                pprint(command_class)
+                # pprint(command_class)
                 # creating an optionparser
                 optparser = command_class.create_parser(
                     './manage.py', command_name)
-                pprint(optparser)
+                # pprint(optparser)
                 # get the docstring from the parser
                 docstring = ''
                 if optparser.usage is not None:
                     docstring = optparser.usage.replace('%prog', './manage.py')
-                pprint('docstring: ' + docstring)
+                # pprint('docstring: ' + docstring)
                 # get the options
                 options = []
                 Option = namedtuple('Option', ['opt_string', 'help'])
-                pprint(getattr(optparser, 'option_list', []))
+                # pprint(getattr(optparser, 'option_list', []))
                 for opt in getattr(optparser, 'option_list', []):
                     pprint(opt)
                     if opt.dest is not None:
@@ -154,9 +154,11 @@ class CommandExecutionForm(forms.Form):
 
         pprint('Result:' + result.getvalue())
 
-        if settings.LOGFILE_PATH is not None:
+        pprint(app_settings.LOGFILE_PATH)
+
+        if app_settings.LOGFILE_PATH is not None:
             file_name = os.path.join(
-                settings.LOGFILE_PATH,
+                app_settings.LOGFILE_PATH,
                 'command_interface_log-{0}.log'.format(command))
             try:
                 with open(file_name, 'w') as f:

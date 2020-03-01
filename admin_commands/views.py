@@ -38,4 +38,4 @@ class AdminCommandsInterfaceView(FormView):
         return super(AdminCommandsInterfaceView, self).form_valid(form)
 
     def get_success_url(self):
-        return reverse('command_interface_main')
+        return reverse('admin-commands:admin_commands')

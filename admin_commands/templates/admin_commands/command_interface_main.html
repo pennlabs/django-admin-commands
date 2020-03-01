@@ -47,7 +47,7 @@
                 </label>
                 <input type="submit" value="{% trans "Run command" %}" />
             </form>
-            <p>{{ command.help_text|linebreaksbr }}</p>
+            <p>{% autoescape on %} {{ command.help_text|linebreaksbr }} {% endautoescape %}</p>
         {% endfor %}
     {% endfor %}
 </body>
