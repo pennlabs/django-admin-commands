@@ -21,16 +21,12 @@ Install with pip `pip install django-admin-commands`
 
 Add ``admin_commands`` to your ``INSTALLED_APPS``
 
-.. code-block:: python
-
     INSTALLED_APPS = (
         ...,
         'admin_commands',
     )
 
 Add the ``admin_commands`` URLs to your ``urls.py``
-
-.. code-block:: python
 
     urlpatterns = patterns('',
         ...
@@ -93,4 +89,4 @@ See [CHANGELOG.md](https://github.com/pennlabs/django-admin-commands/blob/master
 
 See [LICENSE](https://github.com/pennlabs/django-admin-commands/blob/master/LICENSE)
 
-Originally based on django-command-interface by bitlabstudio. (https://github.com/bitlabstudio/django-command-interface)
+Originally based on ``django-command-interface`` by bitlabstudio. (https://github.com/bitlabstudio/django-command-interface)
