@@ -17,7 +17,7 @@ class AdminCommandsInterfaceView(FormView):
     one single view within one click (or some parameters and a click).
     """
     form_class = CommandExecutionForm
-    template_name = 'admin_commands/command_interface_main.html'
+    template_name = 'admin/command_interface_main.html'
 
     @method_decorator(login_required)
     def dispatch(self, request, *args, **kwargs):
