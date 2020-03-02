@@ -43,30 +43,21 @@ You HAVE to have `DJANGO_PROJECT_ROOT` in your settings pointing towards the
 directory of your `manage.py` file.
 
 
-ADMIN_COMMANDS_DISPLAYED_APPS = ["clubs"]
-ADMIN_COMMANDS_DISPLAYED_COMMANDS = []	ADMIN_COMMANDS_DISPLAYED_COMMANDS = []
-ADMIN_COMMANDS_LOG_FILES = os.path.join(DJANGO_PROJECT_ROOT, 'logs')	ADMIN_COMMANDS_LOGFILE_PATH = os.path.join(DJANGO_PROJECT_ROOT, "logs")
-
 ## Settings
-ADMIN_COMMANDS_DISPLAYED_APPS
-++++++++++++++++++++++++++++++++
+### ADMIN_COMMANDS_DISPLAYED_APPS
 
 You can limit the displayed apps by setting
 ``ADMIN_COMMANDS_DISPLAYED_APPS``. The syntax is the same as it is in the
 ``INSTALLED_APPS`` setting. It defaults to showing absolutely all apps.
 
-.. code-block:: python
-
     # would list all commands of the example_app
     ADMIN_COMMANDS_DISPLAYED_APPS = ['example_app']
 
-ADMIN_COMMANDS_DISPLAYED_COMMANDS
-++++++++++++++++++++++++++++++++++++
+### ADMIN_COMMANDS_DISPLAYED_COMMANDS
 
 Further you can also provide a list of commands, that should explicitly be
 displayed. Defaults to all as well.
 
-.. code-block:: python
 
     # would on its own only show the mycommand command
     ADMIN_COMMANDS_DISPLAYED_COMMANDS = ['mycommand']
@@ -75,14 +66,12 @@ displayed. Defaults to all as well.
 The settings don't exclude each other. So displaying any full app and just one
 or two specific commands from somewhere else is no problem at all.
 
-ADMIN_COMMANDS_LOGFILE_PATH
-++++++++++++++++++++++++++++++
+### ADMIN_COMMANDS_LOGFILE_PATH
 
 For logging, you can specify a logfile path, where logfiles for each command
 can be created. The logfiles will always be prefixed with
 ``command_interface_log-``.
 
-..code-block:: python
 
     ADMIN_COMMANDS_LOGFILE_PATH = '/home/myname/tmp/logs/'
 
