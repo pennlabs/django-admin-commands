@@ -33,7 +33,7 @@ setup(
     license="MIT",
     author="Penn Labs",
     author_email="admin@pennlabs.org",
-    description="Penn Labs example description",
+    description="Django app which creates a portal to run ./manage.py commands from",
     long_description=DESCRIPTION,
     long_description_content_type="text/markdown",
     install_requires=["django>=2.0.0"],
